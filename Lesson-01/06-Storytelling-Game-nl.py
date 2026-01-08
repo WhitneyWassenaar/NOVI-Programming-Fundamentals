@@ -1,5 +1,10 @@
 # === LESSON 1: STORYTELLING GAME ===
-# This is an exercise made during the lesson. The story and code is in Dutch to be understan
+# Dutch version
+
+# Schrijf een verhaal van ongeveer 20 - 50 woorden, waarin je minimaal 5 variabelen zet die de gebruiker zelf moet invullen.
+# Vraag de gebruiker om input voor die variabelen
+# B.v. print("{jouw_naam} loopt door het bos en ontmoet {vriend_naam}. Samen besluiten om {sport} te gaan doen onder de grote {boom_soort}")
+
 naam = input("Wat is je naam?: ")
 naam_vriend = input("Hoe heet jouw beste vriend of vriendin?: ")
 hoeveelheid = int(input("Kies een getal tussen 1 en 10: "))
