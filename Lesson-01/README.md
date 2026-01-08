@@ -28,7 +28,7 @@ In this lesson  I learn about the basics of Python. The lesson covers variables,
 - None
 
 ## Pseudocode
-Pseudocode is not a real programming code. It is used to think through logic and steps. It's a way to plan or describee a program or algorithm using plain, human-readable language instead of actual code.
+Pseudocode is not a real programming code. It is used to think through logic and steps. It's a way to plan or describe a program or algorithm using plain, human-readable language instead of actual code.
 
 ## Variables
 - Variables are used to store information, which we can use later in our program.
