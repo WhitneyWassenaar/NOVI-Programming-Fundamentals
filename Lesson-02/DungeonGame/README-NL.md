@@ -29,7 +29,7 @@ Dit is een tekstgebaseerde avontuur spel. Het wordt ook wel een command-line gam
 Voor elke situatie maak je een keuze, en dat heeft weer invloed op jouw verhaallijn. Uiteindelijk is het de bedoeling dat je de Drie Zielen Scarabee vindt. Als je die hebt gevonden dan heb je gewonnen.
 
 ## Flowchart: Structuur van het spel
-<img src="Afbeeldingen/DungeonGame_Afbeelding3.png"></img>
+<img src="Images/DungeonGame_Afbeelding3.png"></img>
 
 
 
@@ -40,11 +40,11 @@ Dit is het begin van het spel. Je voert jouw naam in en het spel zal jouw naam g
 Ik wilde graag de opties onder elkaar weergeven. Maar zoals je ziet, lukte dat niet. Natuurlijk wist ik wel dat dit mogelijk moest zijn. 
 Hoe ik dacht dat ik het moest schrijven:``` /n ```
 
-<img src="Afbeeldingen/DungeonGame_Afbeelding4.png"></img>
+<img src="Images/DungeonGame_Afbeelding4.png"></img>
 
 <b>Output</b>
 
-<img src="Afbeeldingen/DungeonGame_Afbeelding5.png"></img>
+<img src="Images/DungeonGame_Afbeelding5.png"></img>
  
 
 ## Waar ging het mis?
@@ -55,27 +55,27 @@ Ik had het bijna goed. Het moest zijn:
 Bron: https://www.datacamp.com/tutorial/python-new-line
 En nu ziet het er zo uit
 
-<img src="Afbeeldingen/DungeonGame_Afbeelding6.png"></img>
+<img src="Images/DungeonGame_Afbeelding6.png"></img>
 
- <img src="Afbeeldingen/DungeonGame_Afbeelding7.png"></img>
+ <img src="Images/DungeonGame_Afbeelding7.png"></img>
 
 ## Een variabele in brackets weergeven als UPPERCASE
 Ik wil graag dat de variabele: naam wordt geprint in UPPERCASE. Ik wist niet hoe dat moest dus ik had dat opgezocht. Zo ziet het er eerst uit.
 
-<img src="Afbeeldingen/DungeonGame_Afbeelding9.png"></img>
+<img src="Images/DungeonGame_Afbeelding9.png"></img>
 
 Bron: https://www.w3schools.com/python/ref_string_upper.asp
 Gebruik “.upper()” om de string in uppercase te laten weergeven.
 
-<img src="Afbeeldingen/DungeonGame_Afbeelding8.png"></img>
+<img src="Images/DungeonGame_Afbeelding8.png"></img>
 
 ## Een scene herhalen
 Al hoewel de keuzes vaak verschillend kunnen zijn, zullen sommige scenes zich moeten herhalen. Ik wil bijvoorbeeld dat keuze 1 overgaat naar de basilisk scene. 
- <img src="Afbeeldingen/DungeonGame_Afbeelding10.png"></img>
+ <img src="Images/DungeonGame_Afbeelding10.png"></img>
 
 <b>Basilisk scene</b>
 
-<img src="Afbeeldingen/DungeonGame_Afbeelding11.png"></img>
+<img src="Images/DungeonGame_Afbeelding11.png"></img>
 
 Maar omdat ik elke input van de scene met dezelfde variabele naam: ‘optie’ heb gegeven. Is het niet duidelijk welke scene herhaald moet worden.
 
@@ -98,7 +98,7 @@ Er was ook sprake van veel herhaling. Ik heb toen gekeken welke scenes meerdere 
 
 Ik moet dus een functie schrijven voor elke scene die herhaald wordt. Op deze manier hoef ik niet stukken code opnieuw te schrijven voor elke optie die uitkomt op de aangewezen scene.
 
-<img src="Afbeeldingen/DungeonGame_Afbeelding12.png"></img>
+<img src="Images/DungeonGame_Afbeelding12.png"></img>
 
 ## Structuur
 Ook kwam ik later achter dat ik structuur miste in mijn code. Aangezien ik het spel vaker wil spelen zal het spel zelf ook als functie geschreven moeten worden om het opnieuw aan te roepen als de speler dood is gegaan of heeft gewonnen.
@@ -109,12 +109,12 @@ Ik dacht serieus dat ik bij elke keuzemogelijkheid een while loop moest gebruike
 
 <b>Schematisch</b>
 
-<img src="Afbeeldingen/DungeonGame_Afbeelding13.png"></img>
+<img src="Images/DungeonGame_Afbeelding13.png"></img>
  
 ## In code
 Hier kan je goed zien dat ik meerde while loops in mijn code heb verwerkt. Het heeft even geduurd want ik ben 2 keer van mening veranderd of al die while loops wel of niet nodig waren. Maar nu weet ik na trial en error dat while loops wel degelijk nodig zijn.
 
-<img src="Afbeeldingen/DungeonGame_Afbeelding14.png"></img>
+<img src="Images/DungeonGame_Afbeelding14.png"></img>
 
 ## Wanneer zijn while loops nodig?
 While loops zijn nodig als je wil dat de code zich herhaald, maar je weet niet hoe vaak.  Bijvoorbeeld als er een int(input()) wordt gevraagd, zoals: 
@@ -126,21 +126,21 @@ Dan wil je dat de speler het getal 1, 2 of 3 invoert. Als de speler dat niet doe
 Maar je wilt juist dat de speler opnieuw een poging kan doen om een getal te kiezen, dus als je de statements in een while loop doet dan wordt de input opnieuw gevraagd totdat de gewenste input wordt ingevoerd. Dit geldt dus voor while True
 Elke input heb ik in een while True gezet.
 
-<img src="Afbeeldingen/DungeonGame_Afbeelding15.png"></img>
+<img src="Images/DungeonGame_Afbeelding15.png"></img>
  
 ## Try except
 Vooral bij inputs waar een getal ingevoerd moet worden, is het belangrijk dat dit ook wordt gedaan. Wanneer er een enter of een woord wordt ingevoerd, dan ontstaat er een ValueError en dan crasht het programma.
 Dit gebeurt er bij de eerste input. Zonder try except geeft pyhton terecht een error, want python probeert een string om te zetten naar een integer, en dat lukt niet. Als je try except toepast dan gaat de code terug naar de input om opnieuw ingevuld te worden.
 Dit heb ik dus bij elke input toegepast.
 
-<img src="Afbeeldingen/DungeonGame_Afbeelding16.png"></img>
+<img src="Images/DungeonGame_Afbeelding16.png"></img>
 
 Bron: https://www.youtube.com/watch?v=j_q6NGOwDJo
 
 ## De problematiek bij het Eiland van Thor
 Het viel mij op dat wanneer ik het einde had bereikt (maakt niet uit of speler wel of niet had gewonnen) dat bij sommige routes voorkwam dat de speler terug ging naar een keuzemenu van een stap ervoor. Ik had toen bijna alle routes getest. Dit deed ik door lijnen te trekken over mijn flowchart.
 
-<img src="Afbeeldingen/DungeonGame_Afbeelding17.png"></img>
+<img src="Images/DungeonGame_Afbeelding17.png"></img>
  
 ## Wat valt je op?
 Elke keer wanneer de route via het Eiland van Thor ging, belandde ik dus in de situatie dat ik na het einde terug ging naar de vorige scene (ergens tussen Eiland van Thor en een ander daaropvolgende scene). 
@@ -151,7 +151,7 @@ Dus het probleem ontstond bij de Eiland van Thor scene.
 Voordat ik verder ga met het bespreken wat er mis gaat op Eiland van Thor moet ik eerst uitleggen welke functie ik nog meer gebruikt heb in de code. Een ander onderdeel dat vaak terugkomt, is of de speler “dood” is of “de Drie Zielen Scarabe” heeft gevonden.
 Dit doe ik met deze functie:
 
-<img src="Afbeeldingen/DungeonGame_Afbeelding1.png"></img>
+<img src="Images/DungeonGame_Afbeelding1.png"></img>
 
 Deze functie checkt of het klopt dat de speler na het maken van een keuze, “dood” of “gewonnen” heeft 
 (in het voorbeeld wordt kroon gebruikt omdat dit eerst het idee was van het spel (dit staat dus voor “gewonnen”), ik heb het gewoon gelaten in de code, in het verhaal heb ik kroon verandert naar de Drie Zielen Scarabee.)
@@ -182,7 +182,7 @@ De scene basilisk zal uiteindelijk eindigen met een return-statement. Dit zal al
 
 Het return-statement zal dus teruggeven wat de scene_Basilisk(naam) uiteindelijk zal teruggeven. Dus dat zal True zijn en daarmee stop je dus het keuzemenu van Eiland van Thor. . Ik heb daarvoor de variabele: resultaat voor aangemaakt.
 
-<img src="Afbeeldingen/DungeonGame_Afbeelding2.png"></img>
+<img src="Images/DungeonGame_Afbeelding2.png"></img>
 
  
 
