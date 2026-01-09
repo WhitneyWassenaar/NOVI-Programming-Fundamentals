@@ -53,7 +53,7 @@ else:
     print('You did not choose a pizza')
 ```
 ---
-# Treasure :lock:
+### Treasure :lock:
 For the first time, I understand what ASCII art is. For this assignment, I used an image-to-ASCII converter website [https://www.asciiart.eu/image-to-ascii](https://www.asciiart.eu/image-to-ascii) to quickly create ASCII art. I chose Code page 437 as the ASCII gradient.  
 
 I added an input after the last print statement in case you run the code in Python.  
@@ -62,7 +62,7 @@ If the program ends, you wouldn’t see the last print statement, so I added an 
 input("Press enter to quit the game")
 ```
 
-# Password 🔐
+### Password 🔐
 
 I noticed I spent too much time on the condition of the `while` loop. Often, there was a bug in the code where an error appeared if the answer was entered correctly on the third attempt. I made it unnecessarily difficult for myself. Should I start the `while` loop with a fixed number of attempts or run it as long as the correct password hasn't been entered?
 
@@ -70,13 +70,13 @@ There was also a case where a variable was underlined in yellow, which means it 
 
 In this exercise, it was important to understand which factor has the highest priority. What weighs more: the number of attempts to enter a password, or when the correct password is entered? The order matters a lot.
 
-# Random number 🔢
+### Random number 🔢
 
 In Python, `random.randInt(1,10)` and `random.randomInt(1,10)` do **NOT** work!  
 `random.randint(1,10)` **does** work.  
 Both `1` and `10` are included in `random.randint(1,10)`.
 
-# Change 💰
+### Change 💰
 
 If we use a variable multiple times in `if` statements, its value can change (or be overwritten) depending on which condition is executed.
 
