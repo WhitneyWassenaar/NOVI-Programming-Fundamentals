@@ -13,4 +13,5 @@ This repository contains all exercises, projects and tutorials completed during 
 - **Projects** → Personal projects
 - **Tutorials** → Exercises from external tutorials
 
-
+### Language
+All exercises are originally written in Dutch, but most have been translated to English for clarity for international readers. Files written in Dutch can be distinguished by 'NL' in the file name.
