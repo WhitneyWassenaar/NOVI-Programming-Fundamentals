@@ -129,8 +129,8 @@ Elke input heb ik in een while True gezet.
 <img src="Images/DungeonGame_Afbeelding15.png"></img>
  
 ## Try except
-Vooral bij inputs waar een getal ingevoerd moet worden, is het belangrijk dat dit ook wordt gedaan. Wanneer er een enter of een woord wordt ingevoerd, dan ontstaat er een ValueError en dan crasht het programma.
-Dit gebeurt er bij de eerste input. Zonder try except geeft pyhton terecht een error, want python probeert een string om te zetten naar een integer, en dat lukt niet. Als je try except toepast dan gaat de code terug naar de input om opnieuw ingevuld te worden.
+Vooral bij inputs waar een getal ingevoerd moet worden, is het belangrijk dat dit ook wordt gedaan. Wanneer er een enter of een woord wordt ingevoerd, dan ontstaat er een `ValueError` en dan crasht het programma.
+Dit gebeurt er bij de eerste input. Zonder try except geeft Python terecht een error, want python probeert een string om te zetten naar een integer, en dat lukt niet. Als je try except toepast dan gaat de code terug naar de input om opnieuw ingevuld te worden.
 Dit heb ik dus bij elke input toegepast.
 
 <img src="Images/DungeonGame_Afbeelding16.png"></img>
@@ -155,7 +155,7 @@ Dit doe ik met deze functie:
 
 Deze functie checkt of het klopt dat de speler na het maken van een keuze, “dood” of “gewonnen” heeft 
 (in het voorbeeld wordt kroon gebruikt omdat dit eerst het idee was van het spel (dit staat dus voor “gewonnen”), ik heb het gewoon gelaten in de code, in het verhaal heb ik kroon verandert naar de Drie Zielen Scarabee.)
-Dit checkt de functie met een “return” statement. Als def check_Resulaat(resultaat): True terugkrijgt dan stopt het hele spel, en als het False krijgt dan blijf de functie draaien totdat het True terugkrijgt.
+Dit checkt de functie met een “return” statement. Als `def check_Resulaat(resultaat)`: `True` terugkrijgt dan stopt het hele spel, en als het `False` krijgt dan blijf de functie draaien totdat het `True` terugkrijgt.
 
 
 Dit is een functie van de Eiland van Thor scene: def scene_Thor(naam):
