@@ -12,7 +12,7 @@ print('My age is', age)  # The result is: My age is 25
 # print the sentence 'My name is Jan, and I am 25 years old'. Then change the age to 30.
 # and print the sentence again.
 #
-# Expected output: 'My name is Jan, and I am 25 years old' and 'My name is Jan and I am 30 years old'
+# Expected output: 'My name is Jan, and I am 25 years old' and 'My name is Jan, and I am 30 years old'
 # ==========================================
 
 name = 'Jan'
