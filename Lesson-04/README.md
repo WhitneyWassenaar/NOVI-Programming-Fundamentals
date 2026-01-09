@@ -1,4 +1,4 @@
-# Lesson 4: Control Structures and Lists
+# Lesson 4: Lists and Tuples
 
 ## Lesson Overview
 In this lesson, we explore Python's compound data types, focusing on lists and tuples, as well as control structures such as loops. We will learn how to store multiple values in a single variable, manipulate them, and iterate over them efficiently.
@@ -31,7 +31,7 @@ print(list[0])
 
 **Slicing**
 ```python
-print(my_list[1:4])
+print(list[1:4])
 ```
 
 ## List Methods
