@@ -189,8 +189,8 @@ while user_input <= 0 or user_input > 1E6:
     user_input = int(input('Enter amount in euro cents: '))
 
 print('You must give back: ')
-for value, function, name in coin_and_bill_values:
-    count = user_input // value
-    if count > 0:
-        print(f'{count} {function(count)} of {name}')
-        user_input -= count * value
+for value, function, name in coin_and_bill_values:    # These 3 values are also in your tuple
+    count = user_input // value                       # This is how many times a value fits into the input
+    if count > 0:                                     # If the count is greater than 0, then execute the print statement
+        print(f'{count} {function(count)} of {name}') # {count} = how many times the value fits into the input,{function(count)} = the tuple already specifies which function to use; the count determines whether the function returns singular or plural,{name} = the name of the coin or bill
+        user_input -= count * value                   # This action is performed during each iteration of the for loop
