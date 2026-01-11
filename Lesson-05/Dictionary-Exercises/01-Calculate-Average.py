@@ -45,7 +45,7 @@ def calculate_average_v2(value_list):            # Use a list of values from the
 
 print(calculate_average_v2(grades_v2))
 
-# ---Grade v3---
+# ---Grades v3---
 # Final solution
 grades_v3 = {"Java": 7, "Python": 8, "C#": 6, "HTML": 9, "CSS": 8}
 
