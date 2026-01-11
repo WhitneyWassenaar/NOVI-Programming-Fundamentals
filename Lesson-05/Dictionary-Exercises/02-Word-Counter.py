@@ -6,7 +6,7 @@
 # ---Word Counter v1---
 sentence = "I want to become a web developer!"
 
-sentence = sentence.split()                        # split() splits a string into a list where each word is a list item
+sentence = sentence.split() # split() splits a string into a list where each word is a list item
 count = 0
 for word in sentence:
     count += 1
@@ -24,7 +24,8 @@ user_input = input('Write a sentence: ').split()
 print(f'{len(user_input)} words in your sentence')
 
 # ---Solution---
-# The Exercise is: Write a program that counts how many words are in a sentence. This solution counts how many times each word appears in the sentence. It does not match what was asked.
+# The Exercise is: Write a program that counts how many words are in a sentence.
+# This solution counts how many times each word appears in the sentence. It does not match what was asked.
 zin = "dit is een testzin om te testen of dit programma werkt"
 aantal_woorden = {}
 
