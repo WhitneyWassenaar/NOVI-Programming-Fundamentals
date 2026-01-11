@@ -26,6 +26,8 @@ print(f'{len(user_input)} words in your sentence')
 # ---Solution---
 # The Exercise is: Write a program that counts how many words are in a sentence.
 # This solution counts how many times each word appears in the sentence. It does not match what was asked.
+
+# Language: Dutch
 zin = "dit is een testzin om te testen of dit programma werkt"
 aantal_woorden = {}
 
