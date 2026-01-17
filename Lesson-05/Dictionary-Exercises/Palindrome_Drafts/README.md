@@ -1,0 +1,4 @@
+# Palindrome Drafts: Confused by 2 different exercises in one
+
+## About Palindrome Drafts
+I had to create a directory dedicated to my drafts from the exercise “Palindrome.” The reason is that in the README for the dictionary exercises, the Palindrome exercise is different from the one in the file. Because of this, I got really confused about what to do. I tried to combine both exercises in a single piece of code, which ended up being a bit messy. Writing code with bugs is not bad coding—it may be inefficient or fail to work, but it is a great way to learn and understand what went wrong. Struggling is part of the programming journey, so I have put these drafts in their own directory for others to view.
