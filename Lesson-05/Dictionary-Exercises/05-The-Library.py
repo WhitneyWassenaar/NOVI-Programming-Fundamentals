@@ -1,4 +1,5 @@
 # ---Menu---
+# [?] Instructies
 # [1] Boeken toevoegen (naam, auteur, genre , publicatiejaar)
 # [2] Alle boeken bekijken (naam, auteur, genre, publicatiejaar)
 # [3] Boeken zoeken op genre (naam, auteur, publicatiejaar)
@@ -35,6 +36,7 @@ while True:
             print("\nOngeldige keuze, probeer het nog eens")
         else:
             break
+
 # ---[?] ---Instructies---
     if menu_option == "?":
         print("---Instructies---\n"
@@ -58,7 +60,7 @@ while True:
               "Horror\n"
               "Zelfhulp\n"
               "Kinderboeken\n"
-              ""
+              "\n"
               "Publicatiejaar: Vul publicatiejaar in.\n"
               "\n"
               "---LET OP---\n"
@@ -82,8 +84,8 @@ while True:
                   "Je gaat nu een boek toevoegen\n")
             titel = input("Voer titel van boek in: ")
             auteur = input("Voer auteur in: ")
-            while True:
 
+            while True:
                 genre = input("Voer genre in: ").title()
                 if genre not in genre_dictionary.values():
                     print("Ongeldige genre\n"
@@ -101,6 +103,7 @@ while True:
                           "Kinderboeken")
                 else:
                     break
+
             while True:
                 try:
                     publicatiejaar = int(input("Voer publicatiejaar in: "))
@@ -120,7 +123,6 @@ while True:
             }
 
             bibliotheek[titel] = boek
-
             print(f"\nHet boek: '{titel}' is toegevoegd!\n")
 
             opnieuw_toevoegen = input("Wil je nog een boek toevoegen? (ja / nee): ")
@@ -131,7 +133,6 @@ while True:
     if menu_option == "2":
         print("\n---Boek bekijken---\n"
               "Je gaat nu alle boeken in de bibliotheek bekijken\n")
-
         for titel, boek in bibliotheek.items():
             print(f'--------------------\n'
                   f'Titel: {titel}')
@@ -142,7 +143,6 @@ while True:
 # ---[3] Boeken zoeken op genre---
     if menu_option == "3":
         while True:
-
             print("\n---Boek zoeken op genre---\n"
                   "Je gaat een boek zoeken op genre\n"
                   "\n---Genres---\n"
@@ -181,8 +181,6 @@ while True:
             if terug.lower() == "ja":
                 break
 
-
-
 # ---[4] Programma afsluiten---
     if menu_option == "4":
         print("\n---Programma aflsuiten---\n"
@@ -190,7 +188,6 @@ while True:
               "\n"
               "Tot ziens!")
         break
-
 
 # ---Notities---
 # 1. Hoe weet ik waar ik de lege dictionaries moet plaatsen in de code?
