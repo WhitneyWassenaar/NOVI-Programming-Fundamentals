@@ -37,7 +37,7 @@ while True:
         else:
             break
 
-# ---[?] ---Instructies---
+# ---[?] Instructies---
     if menu_option == "?":
         print("---Instructies---\n"
               "\n"
