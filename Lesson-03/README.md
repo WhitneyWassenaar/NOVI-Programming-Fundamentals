@@ -45,3 +45,6 @@ During this lesson, I work with Git and GitHub to manage my code. The following 
 
 ## Summary
 Lesson 3 focuses on strengthening fundamental programming skills by combining control structures with list manipulation. These concepts are essential for writing structured, readable, and efficient Python programs and form an important foundation for more advanced programming topics.
+
+---
+
