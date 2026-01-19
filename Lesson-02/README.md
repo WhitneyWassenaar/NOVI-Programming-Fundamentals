@@ -25,6 +25,13 @@ In this lesson I learn about how to properly use different types of **control st
 | `break`                 | Exit the current loop immediately.                                                                                      |
 | `continue`              | Skip the rest of the current loop iteration and continue with the next.                                                 |
 
+
+
+**Dungeon Game**
+- Building a Dungeon Game with a minimum of 3 layers, 2 if-statements till the end
+- Validate input
+- Use draw.io to visualize idea
+
 ## Short Summary of What I Learned
 
 - If you have elif in your if statement, and for example you have 3 elif's, only the first elif that evaluates to True will execute, and the rest will not be checked.
@@ -42,8 +49,3 @@ In this lesson I learn about how to properly use different types of **control st
     ```
 
 
-
-**Dungeon Game**
-- Building a Dungeon Game with a minimum of 3 layers, 2 if-statements till the end
-- Validate input
-- Use draw.io to visualize idea
