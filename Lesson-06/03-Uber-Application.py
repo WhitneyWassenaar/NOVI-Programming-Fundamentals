@@ -40,6 +40,32 @@ def preference():
     USER["preference"] = uber_collection[preference_option]
     print(f"\nYour preferred service is now: {USER['preference']}\n")
 
+def book_a_ride():
+    while True:
+        ride_option = int(input("Would you like to book a ride with preferred service or would you  like to choose a different service?\n"
+                                "[1] Choose preferred service\n"
+                                "[2] Choose a different service\n"
+                                "\n"
+                                "Enter a number: "))
+
+        if ride_option not in (1,2):
+            print("\nInvalid service, try again\n")
+            continue
+
+        elif ride_option == 1:
+            if USER["preference"] == "":
+                print("You did not choose a preferred service yet. You can choose a preferred service after you choose a different service.\n")
+                continue
+
+            else: # You only have to show the already existing preferred service. My mistake was that I thought I had to continue with km, total price in this else statement
+                preferred_service = service_option_from_preference()
+            print(f"Preferred service selected: {USER['preference']}")
+            service_option, km = different_service(preferred_service)
+            return service_option, km
+
+        elif ride_option == 2:
+            return different_service()
+
 def start():
     while True:
         start_option = int(input("---Start---\n"
@@ -57,6 +83,7 @@ def start():
 
 
         elif start_option == 3:
+            service_option, km = book_a_ride()
 
         else:
 
