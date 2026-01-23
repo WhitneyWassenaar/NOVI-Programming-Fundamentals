@@ -1,16 +1,16 @@
-uber_collection ={
+UBER_COLLECTION ={
     1:"Uber Van",
     2:"Uber Black",
     3:"Uber X"
 }
 
-uber_prices = {
+UBER_PRICES = {
     "Uber Van":3.50,
     "Uber Black":2.00,
     "Uber X":1.50
 }
 
-USER = {
+user = {
     "preference":"",
     "history":[]
 }
@@ -25,10 +25,10 @@ def preference():
     print("\n---Preference---\n"
           "Available services\n")
 
-    for service in uber_collection:
-        service_name = uber_collection[service]
-        price = uber_prices[service_name]
-        print(f"[{service}] {uber_collection[service]}: €{price:.2f}")
+    for service in UBER_COLLECTION:
+        service_name = UBER_COLLECTION[service]
+        price = UBER_PRICES[service_name]
+        print(f"[{service}] {UBER_COLLECTION[service]}: €{price:.2f}")
 
     while True:
         preference_option = int(input("\nSelect service by entering a number: "))
@@ -37,8 +37,8 @@ def preference():
             continue
         break
 
-    USER["preference"] = uber_collection[preference_option]
-    print(f"\nYour preferred service is now: {USER['preference']}\n")
+    user["preference"] = UBER_COLLECTION[preference_option]
+    print(f"\nYour preferred service is now: {user['preference']}\n")
 
 def history():
     """
@@ -47,11 +47,11 @@ def history():
     Prints the contents of USER['history'] if any rides have been booked.
     If no rides are recorded, informs the user that the history is empty
     """
-    if USER["history"] == []:
+    if user["history"] == []:
         print("There is no history, book a ride first\n")
 
     else:
-        for id_ride, booked_ride in enumerate(USER['history'], start=1):
+        for id_ride, booked_ride in enumerate(user['history'], start=1):
             print(f"-------------------------------\n"
                   f"ID-nummer: {id_ride}\n"
                   f"Service: {booked_ride['Service']}\n"
@@ -70,8 +70,8 @@ def service_option_from_preference():
         If USER['preference'] = "Uber X", the function returns 3.
     :return: The key of the preferred service in `uber_collection` or None if no math is found
     """
-    for key,value in uber_collection.items():
-        if value == USER["preference"]:
+    for key,value in UBER_COLLECTION.items():
+        if value == user["preference"]:
             return key
     return None # If there is no match, return something, but not nothing
 
@@ -88,13 +88,13 @@ def book_a_ride():
             continue
 
         elif ride_option == 1:
-            if USER["preference"] == "":
+            if user["preference"] == "":
                 print("You did not select a preferred service yet. You can select a preferred service after you choose a different service.\n")
                 continue
 
             else: # You only have to show the already existing preferred service. My mistake was that I thought I had to continue with km, total price in this else statement
                 preferred_service = service_option_from_preference()
-            print(f"Preferred service selected: {USER['preference']}")
+            print(f"Preferred service selected: {user['preference']}")
             service_option, km = different_service(preferred_service)
             return service_option, km
 
@@ -107,10 +107,10 @@ def different_service(preferred_service=None):  # parameter=None, is an optional
         different_service_option = preferred_service
     else:
         print("---Services---\n")
-        for service in uber_collection:
-            service_name = uber_collection[service]
-            price = uber_prices[service_name]
-            print(f"[{service}] {uber_collection[service]}: €{price:.2f}")
+        for service in UBER_COLLECTION:
+            service_name = UBER_COLLECTION[service]
+            price = UBER_PRICES[service_name]
+            print(f"[{service}] {UBER_COLLECTION[service]}: €{price:.2f}")
         while True:
 
             different_service_option = int(input("Enter a number: "))
@@ -132,8 +132,8 @@ def different_service(preferred_service=None):  # parameter=None, is an optional
     return different_service_option, km
 
 def total_price(service_option, distance):
-    service_name = uber_collection[service_option]
-    price = uber_prices[service_name]
+    service_name = UBER_COLLECTION[service_option]
+    price = UBER_PRICES[service_name]
     total = distance * price
     print(f"Your chosen service: {service_name}\n"
           f"Price per km: €{price:.2f}\n"
@@ -144,7 +144,7 @@ def total_price(service_option, distance):
         "Distance":distance,
         "Total price":total
     }
-    USER['history'].append(booked_ride)
+    user['history'].append(booked_ride)
 
 def start():
     while True:
