@@ -101,6 +101,17 @@ def book_a_ride():
         elif ride_option == 2:
             return different_service()
 
+def different_service(preferred_service=None):  # parameter=None, is an optional parameter, not mandatory to fill in parameter
+
+    if preferred_service is not None:
+        different_service_option = preferred_service
+    else:
+        print("---Services---\n")
+        for service in uber_collection:
+            service_name = uber_collection[service]
+            price = uber_prices[service_name]
+            print(f"[{service}] {uber_collection[service]}: €{price:.2f}")
+
 def start():
     while True:
         start_option = int(input("---Start---\n"
