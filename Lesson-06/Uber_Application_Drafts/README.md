@@ -105,7 +105,7 @@ returns result input * km to calculate total price
 - Make a separate commit for each bug fix to improve traceability during code review.
 - Write pseudocode that can easily be converted into real code.
 
-**How does return work?**
+## How does return work?
 
 Example:
 1. In function_1(), we ask the user for input.
