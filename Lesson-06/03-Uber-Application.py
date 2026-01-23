@@ -131,6 +131,21 @@ def different_service(preferred_service=None):  # parameter=None, is an optional
 
     return different_service_option, km
 
+def total_price(service_option, distance):
+    service_name = uber_collection[service_option]
+    price = uber_prices[service_name]
+    total = distance * price
+    print(f"Your chosen service: {service_name}\n"
+          f"Price per km: €{price:.2f}\n"
+          f"Distance: {distance}\n"
+          f"Total price: €{total:.2f}\n")
+    booked_ride = {
+        "Service":service_name,
+        "Distance":distance,
+        "Total price":total
+    }
+    USER['history'].append(booked_ride)
+
 def start():
     while True:
         start_option = int(input("---Start---\n"
@@ -151,7 +166,10 @@ def start():
 
         elif start_option == 3:
             service_option, km = book_a_ride()
+            total_price(service_option, km)
 
         else:
+            print("Invalid number, try again\n")
+            continue
 
 start()
