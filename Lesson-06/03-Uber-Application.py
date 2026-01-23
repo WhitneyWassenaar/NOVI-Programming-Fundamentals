@@ -15,6 +15,31 @@ USER = {
     "history":[]
 }
 
+def preference():
+    """
+    Allows the user to select their preferred Uber service.
+
+    The selected service is stored in USER['preference'].
+    :return: None
+    """
+    print("\n---Preference---\n"
+          "Available services\n")
+
+    for service in uber_collection:
+        service_name = uber_collection[service]
+        price = uber_prices[service_name]
+        print(f"[{service}] {uber_collection[service]}: €{price:.2f}")
+
+    while True:
+        preference_option = int(input("\nSelect service by entering a number: "))
+        if preference_option not in (1, 2, 3):
+            print("Invalid service, try again")
+            continue
+        break
+
+    USER["preference"] = uber_collection[preference_option]
+    print(f"\nYour preferred service is now: {USER['preference']}\n")
+
 def start():
     while True:
         start_option = int(input("---Start---\n"
@@ -24,6 +49,8 @@ def start():
                                  "\n"
                                  "Enter a number: "))
         if start_option == 1:
+            preference()
+            continue
 
 
         elif start_option == 2:
