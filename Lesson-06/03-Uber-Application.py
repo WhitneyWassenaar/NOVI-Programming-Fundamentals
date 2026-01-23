@@ -77,29 +77,29 @@ def service_option_from_preference():
 
 def book_a_ride():
     while True:
-        ride_option = int(input("Would you like to book a ride with preferred service or would you  like to select a different service?\n"
-                                "[1] Select preferred service\n"
-                                "[2] Select a different service\n"
-                                "\n"
-                                "Enter a number: "))
+            ride_option = int(input("Would you like to book a ride with preferred service or would you  like to select a different service?\n"
+                                    "[1] Select preferred service\n"
+                                    "[2] Select a different service\n"
+                                    "\n"
+                                    "Enter a number: "))
 
-        if ride_option not in (1,2):
-            print("\nInvalid service, try again\n")
-            continue
-
-        elif ride_option == 1:
-            if user["preference"] == "":
-                print("You did not select a preferred service yet. You can select a preferred service after you choose a different service.\n")
+            if ride_option not in (1,2):
+                print("\nInvalid service, try again\n")
                 continue
 
-            else: # You only have to show the already existing preferred service. My mistake was that I thought I had to continue with km, total price in this else statement
-                preferred_service = service_option_from_preference()
-            print(f"Preferred service selected: {user['preference']}")
-            service_option, km = different_service(preferred_service)
-            return service_option, km
+            elif ride_option == 1:
+                if user["preference"] == "":
+                    print("You did not select a preferred service yet. You can select a preferred service after you choose a different service.\n")
+                    continue
 
-        elif ride_option == 2:
-            return different_service()
+                else: # You only have to show the already existing preferred service. My mistake was that I thought I had to continue with km, total price in this else statement
+                    preferred_service = service_option_from_preference()
+                print(f"Preferred service selected: {user['preference']}")
+                service_option, km = different_service(preferred_service)
+                return service_option, km
+
+            elif ride_option == 2:
+                return different_service()
 
 def different_service(preferred_service=None):  # parameter=None, is an optional parameter, not mandatory to fill in parameter
 
@@ -148,12 +148,17 @@ def total_price(service_option, distance):
 
 def start():
     while True:
-        start_option = int(input("---Start---\n"
-                                 "[1] Change service preference\n"
-                                 "[2] View history\n"
-                                 "[3] Book a ride\n"
-                                 "\n"
-                                 "Enter a number: "))
+        try:
+            start_option = int(input("---Start---\n"
+                                     "[1] Change service preference\n"
+                                     "[2] View history\n"
+                                     "[3] Book a ride\n"
+                                     "\n"
+                                     "Enter a number: "))
+        except ValueError:
+            print("Only numbers are allowed, try again\n")
+            continue
+
         if start_option == 1:
             preference()
             continue
@@ -171,5 +176,6 @@ def start():
         else:
             print("Invalid number, try again\n")
             continue
+
 
 start()
