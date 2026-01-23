@@ -105,6 +105,7 @@ returns result input * km to calculate total price
 - Make a separate commit for each bug fix to improve traceability during code review.
 - Write pseudocode that can easily be converted into real code.
 
+
 ## How does return work?
 
 Example:
@@ -128,4 +129,44 @@ def function_2(param):
     variable_2 = input()
 
     return result_multiply, variable_2
+```
+
+## Input Validation with Try/Except
+**BUG**: Whenever the user must select an option, if the input was not entered as a valid value, the error message ``"Only numbers are allowed, try again"`` was printed in the terminal. However, this approach is confusing, because if an input requires a string, the same message would still appear, which does not make sense.
+
+**Problem**: The issue is that the ``try/except`` block is wrapped around all options, including calls to other functions that may require different types of input.
+
+**Solution**: Place the ``try/except`` block only around the input itself. This way, only the input is checked, rather than all the functions.
+
+```python
+def start():
+    while True:
+        try:
+            start_option = int(input("---Start---\n"
+                                     "[1] Change service preference\n"
+                                     "[2] View history\n"
+                                     "[3] Book a ride\n"
+                                     "\n"
+                                     "Enter a number: "))
+            if start_option == 1:
+                preference()
+                continue
+
+
+            elif start_option == 2:
+                history()
+                continue
+
+
+            elif start_option == 3:
+                service_option, km = book_a_ride()
+                total_price(service_option, km)
+
+            else:
+                print("Invalid number, try again\n")
+                continue
+        except ValueError:
+            print("Only numbers are allowed, try again\n")
+
+start()
 ```
