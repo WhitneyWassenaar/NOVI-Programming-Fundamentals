@@ -1,3 +1,20 @@
+uber_collection ={
+    1:"Uber Van",
+    2:"Uber Black",
+    3:"Uber X"
+}
+
+uber_prices = {
+    "Uber Van":3.50,
+    "Uber Black":2.00,
+    "Uber X":1.50
+}
+
+USER = {
+    "preference":"",
+    "history":[]
+}
+
 def start():
     while True:
         start_option = int(input("---Start---\n"
