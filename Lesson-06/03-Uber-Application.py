@@ -40,6 +40,24 @@ def preference():
     USER["preference"] = uber_collection[preference_option]
     print(f"\nYour preferred service is now: {USER['preference']}\n")
 
+def history():
+    """
+     Displays the user's booked ride history.
+
+    Prints the contents of USER['history'] if any rides have been booked.
+    If no rides are recorded, informs the user that the history is empty
+    """
+    if USER["history"] == []:
+        print("There is no history, book a ride first\n")
+
+    else:
+        for id_ride, booked_ride in enumerate(USER['history'], start=1):
+            print(f"-------------------------------\n"
+                  f"ID-nummer: {id_ride}\n"
+                  f"Service: {booked_ride['Service']}\n"
+                  f"Distance: {booked_ride['Distance']} km\n"
+                  f"Total price: €{booked_ride['Total price']}\n")
+
 def book_a_ride():
     while True:
         ride_option = int(input("Would you like to book a ride with preferred service or would you  like to choose a different service?\n"
@@ -80,6 +98,8 @@ def start():
 
 
         elif start_option == 2:
+            history()
+            continue
 
 
         elif start_option == 3:
