@@ -119,6 +119,18 @@ def different_service(preferred_service=None):  # parameter=None, is an optional
                 continue
             break
 
+    while True:
+
+        km = int(input("Enter km: "))
+
+        if km <=5:
+            print("We do not accept distance shorter than 6 km")
+            continue
+        else:
+            break
+
+    return different_service_option, km
+
 def start():
     while True:
         start_option = int(input("---Start---\n"
