@@ -1,7 +1,7 @@
 # About Uber Application Drafts
 This directory contains drafts from the Uber application exercise. It was an exercise that required a lot of patience and understanding. Through this exercise, I learned how to build a clear structure for an application.
 
-You know that feeling when you worked on your code hours or days ago, and now you no longer understand what you wrote or what your code does, and you feel like starting over? That feeling comes from not fully understanding the fundamentals of your code. When I experienced this, I decided to start over and teach myself the basics — in my case, functions, comments, docstrings, dictionaries, properties etc.
+You know that feeling when you worked on your code hours or days ago, and now you no longer understand what you wrote or what your code does, and you feel like starting over? That feeling comes from not fully understanding the fundamentals of your code. When I experienced this, I decided to start over multiple times, and teach myself the basics — in my case, functions, comments, docstrings, dictionaries, properties etc.
 
 ## Functions
 **Basic**
