@@ -111,6 +111,13 @@ def different_service(preferred_service=None):  # parameter=None, is an optional
             service_name = uber_collection[service]
             price = uber_prices[service_name]
             print(f"[{service}] {uber_collection[service]}: €{price:.2f}")
+        while True:
+
+            different_service_option = int(input("Enter a number: "))
+            if different_service_option not in (1,2,3):
+                print("Invalid service, try again")
+                continue
+            break
 
 def start():
     while True:
