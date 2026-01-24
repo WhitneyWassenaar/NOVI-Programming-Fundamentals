@@ -3,6 +3,9 @@ This directory contains drafts from the Uber application exercise. It was an exe
 
 You know that feeling when you worked on your code hours or days ago, and now you no longer understand what you wrote or what your code does, and you feel like starting over? That feeling comes from not fully understanding the fundamentals of your code. When I experienced this, I decided to start over multiple times, and teach myself the basics — in my case, functions, comments, docstrings, dictionaries, properties etc.
 
+## Overview
+The only difference between ``03-Uber-Application.py`` and ``08-Uber-Application_Draft.py`` is a single type-warning. All the other draft files contain code that either works partially or serves as pseudocode drafts.
+
 ## Functions
 **Basic**
 - Choose from 3 different uber services
@@ -105,6 +108,7 @@ returns result input * km to calculate total price
 - Make a separate commit for each bug fix to improve traceability during code review.
 - Write pseudocode that can easily be converted into real code.
 - Secure all inputs that are vulnerable for ValueErrors
+- Use standard Python library: ``typing`` or ``TypeDict``. It provides type hints for type checking tools in the IDE.
 
 
 ## How does return work?
