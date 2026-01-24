@@ -38,14 +38,16 @@ def preference():
             if preference_option not in (1, 2, 3):
                 print("Invalid service, try again")
                 continue
-            break
+            else:
+                user["preference"] = UBER_COLLECTION[preference_option]
+                print(f"\nYour preferred service is now: {user['preference']}\n")
+                break
 
         except ValueError:
             print("To select a service, enter a number. Other characters are not allowed. Try again.")
             continue
 
-    user["preference"] = UBER_COLLECTION[preference_option]
-    print(f"\nYour preferred service is now: {user['preference']}\n")
+
 
 def history():
     """
@@ -59,11 +61,11 @@ def history():
 
     else:
         for id_ride, booked_ride in enumerate(user['history'], start=1):
-            print(f"-------------------------------\n"
-                  f"ID-nummer: {id_ride}\n"
-                  f"Service: {booked_ride['Service']}\n"
-                  f"Distance: {booked_ride['Distance']} km\n"
-                  f"Total price: €{booked_ride['Total price']}\n")
+                print(f"-------------------------------\n"
+                      f"ID-nummer: {id_ride}\n"
+                      f"Service: {booked_ride[0][1]}\n"
+                      f"Distance: {booked_ride[1][1]} km\n"
+                      f"Total price: €{booked_ride[2][1]}\n")
 
 def service_option_from_preference():
     """
@@ -158,11 +160,7 @@ def total_price(service_option, distance):
           f"Price per km: €{price:.2f}\n"
           f"Distance: {distance}\n"
           f"Total price: €{total:.2f}\n")
-    booked_ride = {
-        "Service":service_name,
-        "Distance":distance,
-        "Total price":total
-    }
+    booked_ride = [("Service",service_name),("Distance",distance),("Total price",total)]
     user['history'].append(booked_ride)
 
 def start():
@@ -198,3 +196,4 @@ def start():
 
 
 start()
+
