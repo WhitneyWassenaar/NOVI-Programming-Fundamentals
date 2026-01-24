@@ -74,7 +74,7 @@ def history():
                       f"ID-nummer: {id_ride}\n"
                       f"Service: {booked_ride['Service']}\n"
                       f"Distance: {booked_ride['Distance']} km\n"
-                      f"Total price: €{booked_ride['Total_price']}\n")
+                      f"Total price: €{booked_ride['Total_price']:.2f}\n")
 
 def service_option_from_preference():
     """
