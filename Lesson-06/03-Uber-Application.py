@@ -98,7 +98,7 @@ def book_a_ride():
 
                 elif ride_option == 1:
                     if user["preference"] == "":
-                        print("You did not select a preferred service yet. You can select a preferred service after you choose a different service.\n")
+                        print("You did not select a preferred service yet. You can select a preferred service after you booked a ride with a different service.\n")
                         continue
 
                     else: # You only have to show the already existing preferred service. My mistake was that I thought I had to continue with km, total price in this else statement
