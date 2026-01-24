@@ -1,3 +1,5 @@
+from sys import excepthook
+
 UBER_COLLECTION ={
     1:"Uber Van",
     2:"Uber Black",
@@ -31,11 +33,18 @@ def preference():
         print(f"[{service}] {UBER_COLLECTION[service]}: €{price:.2f}")
 
     while True:
-        preference_option = int(input("\nSelect service by entering a number: "))
-        if preference_option not in (1, 2, 3):
-            print("Invalid service, try again")
+        try:
+
+            preference_option = int(input("\nSelect service by entering a number: "))
+
+            if preference_option not in (1, 2, 3):
+                print("Invalid service, try again")
+                continue
+            break
+
+        except ValueError:
+            print("To select a service, enter a number. Other characters are not allowed. Try again.")
             continue
-        break
 
     user["preference"] = UBER_COLLECTION[preference_option]
     print(f"\nYour preferred service is now: {user['preference']}\n")
@@ -77,29 +86,35 @@ def service_option_from_preference():
 
 def book_a_ride():
     while True:
-            ride_option = int(input("Would you like to book a ride with preferred service or would you  like to select a different service?\n"
-                                    "[1] Select preferred service\n"
-                                    "[2] Select a different service\n"
-                                    "\n"
-                                    "Enter a number: "))
+        try:
+                ride_option = int(input("Would you like to book a ride with preferred service or would you  like to select a different service?\n"
+                                        "[1] Select preferred service\n"
+                                        "[2] Select a different service\n"
+                                        "\n"
+                                        "Enter a number: "))
 
-            if ride_option not in (1,2):
-                print("\nInvalid service, try again\n")
-                continue
 
-            elif ride_option == 1:
-                if user["preference"] == "":
-                    print("You did not select a preferred service yet. You can select a preferred service after you choose a different service.\n")
+                if ride_option not in (1,2):
+                    print("\nInvalid service, try again\n")
                     continue
 
-                else: # You only have to show the already existing preferred service. My mistake was that I thought I had to continue with km, total price in this else statement
-                    preferred_service = service_option_from_preference()
-                print(f"Preferred service selected: {user['preference']}")
-                service_option, km = different_service(preferred_service)
-                return service_option, km
+                elif ride_option == 1:
+                    if user["preference"] == "":
+                        print("You did not select a preferred service yet. You can select a preferred service after you choose a different service.\n")
+                        continue
 
-            elif ride_option == 2:
-                return different_service()
+                    else: # You only have to show the already existing preferred service. My mistake was that I thought I had to continue with km, total price in this else statement
+                        preferred_service = service_option_from_preference()
+                    print(f"Preferred service selected: {user['preference']}")
+                    service_option, km = different_service(preferred_service)
+                    return service_option, km
+        except ValueError:
+            print("To select preferred service, enter a number. Other characters are not allowed. Try again.\n")
+
+        else:
+            return different_service()
+
+
 
 def different_service(preferred_service=None):  # parameter=None, is an optional parameter, not mandatory to fill in parameter
 
@@ -112,23 +127,29 @@ def different_service(preferred_service=None):  # parameter=None, is an optional
             price = UBER_PRICES[service_name]
             print(f"[{service}] {UBER_COLLECTION[service]}: €{price:.2f}")
         while True:
+            try:
 
-            different_service_option = int(input("Enter a number: "))
-            if different_service_option not in (1,2,3):
-                print("Invalid service, try again")
-                continue
-            break
+                different_service_option = int(input("Enter a number: "))
+                if different_service_option not in (1,2,3):
+                    print("Invalid service, try again")
+                    continue
+                break
+            except ValueError:
+                print("To select a different service, enter a number. Other characters are not allowed. try again.\n")
 
     while True:
+        try:
 
-        km = int(input("Enter km: "))
+            km = int(input("Enter km: "))
 
-        if km <=5:
-            print("We do not accept distance shorter than 6 km")
-            continue
-        else:
-            break
+            if km <=5:
+                print("We do not accept distance shorter than 6 km")
+                continue
+            else:
+                break
 
+        except ValueError:
+            (print("To select km, enter whole numbers only. Other characters are not allowed. Try again.\n"))
     return different_service_option, km
 
 def total_price(service_option, distance):
