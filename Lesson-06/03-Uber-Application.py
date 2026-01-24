@@ -1,5 +1,3 @@
-from sys import excepthook
-
 UBER_COLLECTION ={
     1:"Uber Van",
     2:"Uber Black",
