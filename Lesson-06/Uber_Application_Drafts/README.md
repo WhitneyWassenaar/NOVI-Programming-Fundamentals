@@ -104,6 +104,7 @@ returns result input * km to calculate total price
 - Variables in capital are constants. Variables which the value never change
 - Make a separate commit for each bug fix to improve traceability during code review.
 - Write pseudocode that can easily be converted into real code.
+- Secure all inputs that are vulnerable for ValueErrors
 
 
 ## How does return work?
@@ -170,3 +171,4 @@ def start():
 
 start()
 ```
+
