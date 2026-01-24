@@ -108,7 +108,7 @@ returns result input * km to calculate total price
 - Make a separate commit for each bug fix to improve traceability during code review.
 - Write pseudocode that can easily be converted into real code.
 - Secure all inputs that are vulnerable for ValueErrors
-- Use standard Python library: ``typing`` or ``TypeDict``. It provides type hints for type checking tools in the IDE.
+- Use standard Python library: ``typing`` or ``TypeDict`` to solve type-warnings. It provides type hints for type checking tools in the IDE.
 
 
 ## How does return work?
