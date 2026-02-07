@@ -24,7 +24,8 @@ def recent_nearby_observations_of_species(apikey):
     if response.ok:
         data = response.json()
         for observations in data:
-
+            if 'howMany' not in observations:
+                continue
             print(f"\n"
                   f"Bird species name: {observations['comName']}\n"
                   f"Location: {observations['locName']}\n"
