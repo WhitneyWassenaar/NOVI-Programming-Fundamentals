@@ -2,6 +2,24 @@ import requests
 from ebird_apikey import ebird_apikey
 
 # original API endpoint "https://api.ebird.org/v2/data/obs/geo/recent/{{speciesCode}}?lat={{lat}}&lng={{lng}}"
+def location_name_to_coordinate(loc_name):
+    url = "https://nominatim.openstreetmap.org/search?"
+
+    params = {
+        "q":loc_name,
+        "format":"json"
+    }
+
+    headers = {
+        "User-Agent": "BirdSpotter/1.0 (school assignment) using Nominatim/OpenStreetMap API endpoint (contact: user@education.nl)"
+    }
+
+    response = requests.get(url, params=params, headers=headers)
+    data = response.json()
+
+    for location in data:
+        return location['lat'], location['lon']
+    return None
 
 def comname_to_speciescode(comname):
     url = "https://api.ebird.org/v2/ref/taxonomy/ebird"
@@ -26,7 +44,7 @@ def comname_to_speciescode(comname):
         print(f"Something went wrong", response.status_code)
         return None
 
-def recent_nearby_observations_of_species(species_code):
+def recent_nearby_observations_of_species(species_code, lat, long):
 
     url = f"https://api.ebird.org/v2/data/obs/geo/recent/{species_code}"
 
@@ -35,8 +53,8 @@ def recent_nearby_observations_of_species(species_code):
     }
 
     params = {
-        "lat":52.0622531,
-        "lng":4.4901218,
+        "lat":lat,
+        "lng":long,
         "maxResults":30,
         "dist":50
     }
@@ -64,7 +82,12 @@ def recent_nearby_observations_of_species(species_code):
 
 def main():
     bird_name = input("Enter common bird name: ")
+    loc_name = input("Enter location name: ")
+
     species_code = comname_to_speciescode(bird_name)
-    recent_nearby_observations_of_species(species_code)
+    lat, long = location_name_to_coordinate(loc_name)
+    recent_nearby_observations_of_species(species_code,lat,long)
+
+
 
 main()
