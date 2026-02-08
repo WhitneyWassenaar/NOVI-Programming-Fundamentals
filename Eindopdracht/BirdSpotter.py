@@ -3,7 +3,7 @@ from ebird_apikey import ebird_apikey
 
 # original API endpoint "https://api.ebird.org/v2/data/obs/geo/recent/{{speciesCode}}?lat={{lat}}&lng={{lng}}"
 
-def comname_to_speciescode(comname,apikey):
+def comname_to_speciescode(comname):
     url = "https://api.ebird.org/v2/ref/taxonomy/ebird"
 
     params = {
@@ -21,15 +21,12 @@ def comname_to_speciescode(comname,apikey):
         for species in data:
             if species['comName'].lower() == comname.lower():
                 return species['speciesCode']
-        print("Bird species not found")
         return None
     else:
-        print(response.status_code)
+        print(f"Something went wrong", response.status_code)
         return None
 
-def recent_nearby_observations_of_species(species_code,apikey):
-
-    #enter_species_code = input("Enter bird speciescode: ")
+def recent_nearby_observations_of_species(species_code):
 
     url = f"https://api.ebird.org/v2/data/obs/geo/recent/{species_code}"
 
@@ -40,7 +37,7 @@ def recent_nearby_observations_of_species(species_code,apikey):
     params = {
         "lat":52.0622531,
         "lng":4.4901218,
-        "maxResults":5,
+        "maxResults":30,
         "dist":50
     }
 
@@ -48,19 +45,26 @@ def recent_nearby_observations_of_species(species_code,apikey):
 
     if response.ok:
         data = response.json()
+        found_observation = False
+
         for observations in data:
             if 'howMany' not in observations:
                 continue
+            found_observation = True
             print(f"\n"
                   f"Bird species name: {observations['comName']}\n"
                   f"Location: {observations['locName']}\n"
                   f"Amount of birds seen within this area: {observations['howMany']}\n"
                   f"\n")
+        if not found_observation:
+            print("No observations of this species found nearby")
+
     else:
         print(f"{response.status_code}, {response.text}")
 
 def main():
     bird_name = input("Enter common bird name: ")
-    species_code = comname_to_speciescode(bird_name,ebird_apikey)
-    recent_nearby_observations_of_species(species_code,ebird_apikey)
+    species_code = comname_to_speciescode(bird_name)
+    recent_nearby_observations_of_species(species_code)
+
 main()
