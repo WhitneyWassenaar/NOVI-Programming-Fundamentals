@@ -5,6 +5,61 @@ from datetime import datetime
 # original API endpoint "https://api.ebird.org/v2/data/obs/geo/recent/{{speciesCode}}?lat={{lat}}&lng={{lng}}"
 
 
+def sort_data(data_list):
+    if not data_list: # Check of lijst leeg is
+        return data_list, 'None' # Als de lijst leeg is, geef lijst en 'None' terug. Lijst moet je teruggeven omdat het programma nog wil sorteren.
+
+
+    keys = data_list[0].keys()
+    available_options = {}
+    option_counter = 1
+
+    if 'Species' in keys:
+        available_options[option_counter] = 'Species'
+        option_counter += 1
+    if 'Date' in keys:
+        available_options[option_counter] = 'Date'
+        option_counter += 1
+    if 'Amount of birds observed' in keys:
+        available_options[option_counter] = 'Amount of birds observed'
+        option_counter += 1
+
+    print("Sort options")
+    for key, value in available_options.items():
+        print(f"[{key}] Sort {value}")
+
+
+
+    while True:
+        try:
+            sort_option = int(input("\nSelect an option: "))
+
+
+
+            if sort_option not in available_options:
+                print("Invalid option. Please try again.")
+                continue
+
+            chosen = available_options[sort_option]
+
+            if chosen == 'Species':
+                data_list.sort(key=lambda dictionary: dictionary['Species'].lower())
+                return data_list, 'species'
+            elif chosen == 'Date':
+                data_list.sort(key=lambda dictionary: datetime.strptime(dictionary['Date'],"%Y-%m-%d %H:%M"))
+                return data_list, 'date'
+
+            elif chosen == 'Amount of birds observed':
+                data_list.sort(key=lambda dictionary: dictionary['Amount of birds observed'],reverse=True )
+                return data_list, 'amount of birds observed'
+
+            return data_list, chosen
+        except ValueError:
+            print("Enter valid number to select an option. PLease try again")
+
+
+
+
 def location_name_to_coordinate(loc_name):
     url = "https://nominatim.openstreetmap.org/search?"
 
@@ -47,7 +102,7 @@ def comname_to_speciescode(comname):
         print(f"Something went wrong", response.status_code)
         return None
 
-def recent_nearby_observations(lat,lon,max_results,dist_radius,sort_param):
+def recent_nearby_observations(lat,lon,max_results,dist_radius):
     url = f"https://api.ebird.org/v2/data/obs/geo/recent/"
 
     headers = {
@@ -60,7 +115,7 @@ def recent_nearby_observations(lat,lon,max_results,dist_radius,sort_param):
         "lng": lon,
         "maxResults": max_results,
         "dist": dist_radius,
-        "sort": sort_param
+
     }
 
     response = requests.get(url, headers=headers, params=params)
@@ -78,7 +133,7 @@ def recent_nearby_observations(lat,lon,max_results,dist_radius,sort_param):
                 "Species":observations['comName'],
                 "Scientific name":observations['sciName'],
                 "Location":observations['locName'],
-                "Date and time":observations.get('obsDt', 'Unknown'),
+                "Date":observations.get('obsDt', 'Unknown'),
                 "Amount of birds observed":observations['howMany']
             })
         if not found_observation:
@@ -122,7 +177,7 @@ def recent_nearby_observations_of_species(species_code, lat, lon, dist_radius,ma
             obs_count += 1
             obs_list.append({
                 "Location": observations['locName'],
-                "Date and time": observations.get('obsDt','Unknown'),
+                "Date": observations.get('obsDt','Unknown'),
                 "Amount of birds observed":observations['howMany']
             })
 
@@ -203,7 +258,7 @@ def main():
 
         while True:
             if menu_option == 1:
-                print("\n---View observed species at a specific location within a given distance---")
+                print("\n---Find specific bird---")
 
                 while True:
                     bird_name = input("\nEnter common bird name: ")
@@ -256,12 +311,16 @@ def main():
                         print("Enter valid number for maximum observations. PLease try again")
 
 
+
+
                 obs_count, obs_list = recent_nearby_observations_of_species(species_code, lat, lon, dist_radius, max_results)
+                obs_list, sort_param = sort_data(obs_list)
+
                 print(f"\n---{obs_count} results---\n"
                           f"You searched for {bird_name} in {loc_name} within a distance radius of {dist_radius} km.")
                 for obs in obs_list:
                     print(f"\nLocation: {obs['Location']}\n"
-                          f"Date and time: {obs['Date and time']}\n"
+                          f"Date: {obs['Date']}\n"
                               f"Amount of birds observed: {obs['Amount of birds observed']}")
 
                 repeat_menu_option = input("Would you like to  search another bird species? (y/n): ").lower()
@@ -272,7 +331,7 @@ def main():
 
             if menu_option == 2:
 
-                print("\n---Discover bird species nearby---")
+                print("\n---Discover birds nearby---")
 
                 while True:
                     loc_name = input("Enter location name: ")
@@ -315,42 +374,18 @@ def main():
                     except ValueError:
                         print("Enter valid number for maximum observations. PLease try again")
 
-                while True:
-                    try:
-                        sort_option = int(input("Would you like to sort the results in date and time or species?\n"
-                                                "[1] Species\n"
-                                                "[2] Date and time\n"
-                                                "\n"
-                                                "Select an option: "))
 
-                        if sort_option not in (1,2):
-                            print("Invalid option, select option 1 or 2. Please try again.")
-                            continue
-                        elif sort_option == 1:
-                            sort_param = "species"
-                            break
-                        elif sort_option == 2:
-                            sort_param = "date"
-
-                            break
-                        else:
-                            break
-                    except ValueError:
-                        print("Enter valid number to select an option. PLease try again")
-
-                nearby_obs_list, nearby_obs_count = recent_nearby_observations(lat, lon, max_results, dist_radius,sort_param)
-                if sort_param == "species":
-                    nearby_obs_list.sort(key=lambda dictionary: dictionary['Species'].lower())
-                elif sort_param == "date":
-                    nearby_obs_list.sort(key=lambda dictionary: datetime.strptime(dictionary['Date and time'], "%Y-%m-%d %H:%M"))
+                nearby_obs_list, nearby_obs_count = recent_nearby_observations(lat, lon, max_results, dist_radius)
+                nearby_obs_list, sort_param = sort_data(nearby_obs_list)
 
                 print(f"\n---{nearby_obs_count} results---\n"
                       f"You entered the location: {loc_name} within a distance radius of {dist_radius} km. The results are sorted in {sort_param}")
+
                 for obs in nearby_obs_list:
                     print(f"\nSpecies:{obs['Species']}\n"
                     f"Scientific name:{obs['Scientific name']}\n"
                     f"Location:{obs['Location']}\n"
-                    f"Date and time:{obs['Date and time']}\n"
+                    f"Date:{obs['Date']}\n"
                     f"Amount of birds observed:{obs['Amount of birds observed']}")
 
                 repeat_menu_option = input("Would you like to search for bird species based on location again? (y/n): ").lower()
