@@ -1,9 +1,82 @@
 import requests
 from ebird_apikey import ebird_apikey
+from openweather_apikey import openweather_apikey
 from datetime import datetime
 
 # original API endpoint "https://api.ebird.org/v2/data/obs/geo/recent/{{speciesCode}}?lat={{lat}}&lng={{lng}}"
+def weather(lat,lon, apikey,locname):
+    url = f"https://api.openweathermap.org/data/2.5/weather"
 
+    params = {
+        "lat": lat,
+        "lon": lon,
+        "appid":apikey,
+        "units":"metric"
+    }
+
+    response = requests.get(url, params=params)
+
+    if response.ok:
+        data = response.json()
+
+        weather_description = data['weather'][0]['description']
+        temp = data['main']['temp']
+        feels_like = data['main']['feels_like']
+        windspeed = data['wind']['speed']
+        weather_text = f"The weather in {locname} is {weather_description} with a temperature of {temp}°C, "\
+                       f"feels like {feels_like}°C, and a wind speed of {windspeed} m/s."
+        print(weather_text)
+    else:
+        print("Could not fetch weather information")
+
+
+def filter_data(data_list):
+    if not data_list:
+        return data_list
+
+    original_list = data_list
+    while True:
+        print("\n---Filter options---\n"
+              "[1] Number of birds\n"
+              "[2] Bird species\n"
+              "[3] Date\n"
+              "[4] Quit")
+
+        try:
+            filter_option = int(input("Select a filter option: "))
+
+            filtered_list = original_list
+
+            if filter_option == 1:
+                min_birds = int(input("Enter minimum number of birds observed: "))
+                filtered_list = [obs for obs in filtered_list if obs['Amount of birds observed'] >= min_birds]
+                print(f"{len(filtered_list)} observations remaining after filter.")
+            elif filter_option == 2:
+                species_name = input("Enter species name: ").lower()
+                filtered_list = [obs for obs in filtered_list if obs['Species'].lower() == species_name]
+                print(f"{len(filtered_list)} observations remaining after filter.")
+            elif filter_option == 3:
+                date_str = input("Enter earliest date (YYYY-MM-DD): ")
+                date_limit = datetime.strptime(date_str,"%Y-%m-%d").date()
+                filtered_list = [obs for obs in filtered_list if datetime.strptime(obs['Date'], "%Y-%m-%d %H:%M").date() >= date_limit]
+                print(f"{len(filtered_list)} observations remaining after filter.")
+            elif filter_option == 4:
+                break
+            else:
+                print("Invalid option. Please try again.")
+                continue
+
+            for obs in filtered_list:
+                print(f"\nSpecies:{obs['Species']}\n"
+                      f"Scientific name:{obs['Scientific name']}\n"
+                      f"Location:{obs['Location']}\n"
+                      f"Date:{obs['Date']}\n"
+                      f"Amount of birds observed:{obs['Amount of birds observed']}")
+
+        except ValueError:
+            print("Enter a valid input.")
+
+    return  filtered_list
 
 def sort_data(data_list):
     if not data_list: # Check of lijst leeg is
@@ -314,6 +387,7 @@ def main():
 
 
                 obs_count, obs_list = recent_nearby_observations_of_species(species_code, lat, lon, dist_radius, max_results)
+                weather(lat, lon, openweather_apikey, loc_name)
                 obs_list, sort_param = sort_data(obs_list)
 
                 print(f"\n---{obs_count} results---\n"
@@ -323,7 +397,9 @@ def main():
                           f"Date: {obs['Date']}\n"
                               f"Amount of birds observed: {obs['Amount of birds observed']}")
 
-                repeat_menu_option = input("Would you like to  search another bird species? (y/n): ").lower()
+                filter_data(obs_list)
+
+                repeat_menu_option = input("Would you like to  search for another bird species? (y/n): ").lower()
                 if repeat_menu_option == "y":
                     continue
                 else:
@@ -376,7 +452,9 @@ def main():
 
 
                 nearby_obs_list, nearby_obs_count = recent_nearby_observations(lat, lon, max_results, dist_radius)
+                weather(lat, lon, openweather_apikey,loc_name)
                 nearby_obs_list, sort_param = sort_data(nearby_obs_list)
+
 
                 print(f"\n---{nearby_obs_count} results---\n"
                       f"You entered the location: {loc_name} within a distance radius of {dist_radius} km. The results are sorted in {sort_param}")
@@ -388,7 +466,9 @@ def main():
                     f"Date:{obs['Date']}\n"
                     f"Amount of birds observed:{obs['Amount of birds observed']}")
 
-                repeat_menu_option = input("Would you like to search for bird species based on location again? (y/n): ").lower()
+                filter_data(nearby_obs_list)
+
+                repeat_menu_option = input("Would you like to discover birds again? (y/n): ").lower()
                 if repeat_menu_option == "y":
                     continue
                 else:
@@ -406,7 +486,7 @@ def main():
                       "\n"
                       "2. \n"
                       "After results are displayed, you can sort and filter the observations, "
-                      "or view additional weather information to decide if it's a good time to go birdwatching.\n"
+                      "and view additional weather information to decide if it's a good time to go birdwatching.\n"
                       "\n"
                       "3.\n"
                       "Use the menu options to repeat searches, return to the main menu, or exit BirdSpotter.")
