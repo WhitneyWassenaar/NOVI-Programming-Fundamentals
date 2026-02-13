@@ -1,2 +1,5 @@
 .idea
 .venv
+.ebirdapikey.py
+.openweather.py
+.test.py
