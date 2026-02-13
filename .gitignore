@@ -2,4 +2,5 @@
 .venv
 .ebirdapikey.py
 .openweather.py
-.Eindopdracht/KLAD/test.py
+Eindopdracht/ebird_apikey.py
+Eindopdracht/openweather_apikey.py
